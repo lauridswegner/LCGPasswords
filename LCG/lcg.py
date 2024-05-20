@@ -4,20 +4,22 @@ from typing import Optional
 
 class LCGPseudoRandomizer:
 
-    def __init__(self, m=2**63, a=6364136223846793005, c=1, seed=None): # Newlib
+    def __init__(self, m: int = 2**63, a: int = 6364136223846793005, c: int = 1, seed: Optional[int] = None): # Newlib
 
-        self.m = m
-        self.a = a
-        self.c = c
+        self.m: int = m
+        self.a: int = a
+        self.c: int = c
 
         if seed is None:
-            self.x0 = int(os.getpid() + time.time()) * time.monotonic_ns()
+            # Read 8 random bytes from /dev/urandom
+            random_bytes = os.urandom(8)
+            # Convert the random bytes to an integer
+            self.x0: int = int.from_bytes(random_bytes, byteorder='big')
         else:
-            self.x0 = seed
+            self.x0: int = seed
+        self.x_prev: int = (self.a * self.x0 + self.c) % self.m
 
-        self.x_prev = (self.a * self.x0 + self.c) % self.m
-
-    def randomint(self, lower_limit=None, upper_limit=None):
+    def randomint(self, lower_limit: Optional[int] = None, upper_limit: Optional[int] = None) -> int:
 
         self.x_prev = (self.a * self.x_prev + self.c) % self.m
 
@@ -28,4 +30,8 @@ class LCGPseudoRandomizer:
         
 
 lcg = LCGPseudoRandomizer()
+print(lcg.randomint(1,101))
+print(lcg.randomint(1,101))
+print(lcg.randomint(1,101))
+print(lcg.randomint(1,101))
 print(lcg.randomint(1,101))
