@@ -1,4 +1,5 @@
 import os
+import time
 from typing import Optional
 
 class LCGPseudoRandomizer:
@@ -10,10 +11,7 @@ class LCGPseudoRandomizer:
         self.c: int = c
 
         if seed is None:
-            # Read 8 random bytes from /dev/urandom
-            random_bytes = os.urandom(8)
-            # Convert the random bytes to an integer
-            self.x0: int = int.from_bytes(random_bytes, byteorder='big')
+            self.x0: int = int(os.getpid() + time.time()) * time.monotonic_ns()
         else:
             self.x0: int = seed
         self.x_prev: int = (self.a * self.x0 + self.c) % self.m
