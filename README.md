@@ -12,5 +12,5 @@ a little repository focussing on how to implement a (definitely not safe) approa
 
 - [x] find a proper implementation for the seed initialization
 - [x] implementation of password-generation using characters, numbers and special characters
-- [ ] build gui in tkinter
-	- [ ] determine further approach for gui
+- [x] build gui in tkinter
+	- [x] determine further approach for gui

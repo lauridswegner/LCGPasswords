@@ -54,9 +54,15 @@ class GUI(tk.Tk):
         self.length_slider.bind("<Motion>", lambda e: self.update_length_label(length_label))
 
     def create_checkbutton(self, text, variable):
+        """
+        simplification of creation for checkbuttons
+        """
         return tk.Checkbutton(self, text=text, variable=variable)
 
     def generate(self):
+        """
+        use of the generate_password()-function from the PasswordGenerator-Class
+        """
         length = int(self.length_slider.get())
 
         if not (self.letters_var.get() or self.numbers_var.get() or self.specialChars_var.get()):
@@ -71,11 +77,17 @@ class GUI(tk.Tk):
         self.password_var.set(password)
 
     def copy_password(self):
+        """
+        copying the generated password to clipboard
+        """
         self.clipboard_clear()
         self.clipboard_append(self.password_var.get())
         messagebox.showinfo("Copied", "Password copied to clipboard!")
 
     def update_length_label(self, label):
+        """
+        updating the label's text to match the length_sliders value
+        """
         label.config(text=f"Password Length: {int(self.length_slider.get())}")
 
 if __name__ == "__main__":
