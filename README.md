@@ -1,5 +1,7 @@
 # LCGPasswords
 
+<img width="421" alt="image" src="https://github.com/lauridswegner/LCGPasswords/assets/128291909/36a167a3-2d97-45e4-bd66-b56b17df1e41">
+
 ***
 
 ### description
