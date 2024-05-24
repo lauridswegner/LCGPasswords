@@ -1,4 +1,4 @@
-from lcg import LCGPseudoRandomizer
+from .lcg import LCGPseudoRandomizer
 
 class PasswordGenerator:
 
@@ -20,7 +20,7 @@ class PasswordGenerator:
         if specialCharsCheck:
             self.combination.append(self.specialChars)
 
-        print(self.combination)
+        #print(self.combination)
 
         for i in range(password_length):
             choice = self.randomizer.randomint(0, len(self.combination))
